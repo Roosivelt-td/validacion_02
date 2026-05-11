@@ -22,6 +22,9 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("22.0,50.0")
         }
 
+        // Pausa de 2 segundos para visualizar el resultado en pantalla
+        Thread.sleep(2000)
+
         // Verificar que muestra "22.0" (El símbolo °C está separado en la UI moderna)
         onView(withId(R.id.txtTemperatura))
             .check(matches(withText("22.0")))
@@ -42,6 +45,9 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("35.0,50.0")
         }
 
+        // Pausa de 2 segundos para visualizar el resultado en pantalla
+        Thread.sleep(2000)
+
         // Verificar que muestra "35.0"
         onView(withId(R.id.txtTemperatura))
             .check(matches(withText("35.0")))
@@ -57,6 +63,9 @@ class TemperaturaAppTest {
         activityRule.scenario.onActivity { activity ->
             activity.procesarDatoRecibido("34.0,50.0")
         }
+
+        // Pausa de 2 segundos para visualizar el resultado en pantalla
+        Thread.sleep(2000)
 
         // Verificar que muestra "34.0"
         onView(withId(R.id.txtTemperatura))
@@ -74,6 +83,9 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("ERROR")
         }
 
+        // Pausa de 2 segundos para visualizar el resultado en pantalla
+        Thread.sleep(2000)
+
         // Verificar mensaje de error
         onView(withId(R.id.txtMensajeAlerta))
             .check(matches(withText("Error de lectura")))
@@ -86,6 +98,9 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("")
         }
 
+        // Pausa de 2 segundos para visualizar el resultado en pantalla
+        Thread.sleep(2000)
+
         // Verificar mensaje de error
         onView(withId(R.id.txtMensajeAlerta))
             .check(matches(withText("Error de lectura")))
@@ -97,6 +112,9 @@ class TemperaturaAppTest {
         activityRule.scenario.onActivity { activity ->
             activity.procesarDatoRecibido("26.2,55.0")
         }
+
+        // Pausa de 2 segundos para visualizar el resultado en pantalla
+        Thread.sleep(2000)
 
         // Verificar que muestra "26.2"
         onView(withId(R.id.txtTemperatura))

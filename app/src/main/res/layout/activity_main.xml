@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:id="@+id/mainLayout"
+    android:background="#FFFFFF">
 
+    <!-- Título -->
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="MONITOR DE TEMPERATURA"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="24dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Estado de Bluetooth -->
+    <TextView
+        android:id="@+id/txtEstadoBT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Desconectado"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Botón Conectar -->
+    <Button
+        android:id="@+id/btnConectar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conectar Bluetooth"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Temperatura (Valor grande) -->
+    <TextView
+        android:id="@+id/txtTemperatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="--°C"
+        android:textSize="64sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Mensaje de Alerta -->
+    <TextView
+        android:id="@+id/txtMensajeAlerta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textStyle="bold"/>
+
+</LinearLayout>

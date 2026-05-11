@@ -219,7 +219,7 @@ class MainActivity : AppCompatActivity() {
         readingThread?.start()
     }
 
-    private fun procesarDatoRecibido(dato: String) {
+    fun procesarDatoRecibido(dato: String) {
         // El Arduino envía formato: "temperatura,humedad" -> Ejemplo: "33.50,55.20"
         try {
             val partes = dato.split(",")

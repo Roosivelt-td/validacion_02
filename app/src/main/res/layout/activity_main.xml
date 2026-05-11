@@ -1,60 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:id="@+id/mainLayout"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg_main"
+    android:padding="24dp">
 
-    <!-- Título -->
+    <!-- Header Section -->
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MONITOR DE TEMPERATURA"
-        android:textSize="20sp"
+        android:layout_marginTop="32dp"
+        android:text="Smart Monitor"
+        android:textColor="#1A1C1E"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_marginBottom="24dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Estado de Bluetooth -->
-    <TextView
-        android:id="@+id/txtEstadoBT"
+    <LinearLayout
+        android:id="@+id/statusContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_status_badge"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <View
+            android:id="@+id/statusDot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/dot_red"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/txtEstadoBT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desconectado"
+            android:textColor="#6F7985"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Main Data Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dataCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Desconectado"
-        android:textAlignment="center"
-        android:textColor="#FF0000"
-        android:layout_marginBottom="24dp"/>
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnConectar"
+        app:layout_constraintTop_toBottomOf="@id/statusContainer"
+        app:strokeColor="#E1E3E8"
+        app:strokeWidth="1dp">
 
-    <!-- Botón Conectar -->
-    <Button
-        android:id="@+id/btnConectar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Conectar Bluetooth"
-        android:layout_marginBottom="32dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="32dp">
 
-    <!-- Temperatura (Valor grande) -->
-    <TextView
-        android:id="@+id/txtTemperatura"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="--°C"
-        android:textSize="64sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_marginBottom="16dp"/>
+            <!-- Icon and Temperature Section -->
+            <TextView
+                android:id="@+id/txtIconoEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌡️"
+                android:textSize="48sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Mensaje de Alerta -->
+            <TextView
+                android:id="@+id/labelTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEMPERATURA"
+                android:textColor="#6F7985"
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTemperatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--°"
+                android:textColor="#1A1C1E"
+                android:textSize="80sp"
+                android:textStyle="bold"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelTemp" />
+
+            <TextView
+                android:id="@+id/txtEstadoClima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esperando datos..."
+                android:textColor="#6F7985"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTemperatura" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C"
+                android:textColor="#1A1C1E"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@id/txtTemperatura"
+                app:layout_constraintTop_toTopOf="@id/txtTemperatura" />
+
+            <!-- Divider -->
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="24dp"
+                android:background="#F0F2F5"
+                app:layout_constraintTop_toBottomOf="@id/txtEstadoClima" />
+
+            <!-- Humidity Section -->
+            <TextView
+                android:id="@+id/labelHum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="HUMEDAD"
+                android:textColor="#6F7985"
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <TextView
+                android:id="@+id/txtHumedad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--%"
+                android:textColor="#1A1C1E"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelHum" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Alert Message -->
     <TextView
         android:id="@+id/txtMensajeAlerta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
         android:text=""
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:textColor="#FF0000"
-        android:textStyle="bold"/>
+        android:textColor="#D32F2F"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnConectar" />
 
-</LinearLayout>
+    <!-- Action Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConectar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginBottom="16dp"
+        android:text="Conectar Bluetooth"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
+        app:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="#1A1C1E"
+        app:rippleColor="#33FFFFFF"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

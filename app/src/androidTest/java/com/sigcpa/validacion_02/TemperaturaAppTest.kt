@@ -22,9 +22,13 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("22.0,50.0")
         }
 
-        // Verificar que muestra "22.0°C"
+        // Verificar que muestra "22.0" (El símbolo °C está separado en la UI moderna)
         onView(withId(R.id.txtTemperatura))
-            .check(matches(withText("22.0°C")))
+            .check(matches(withText("22.0")))
+
+        // Verificar que muestra "50.0%" de humedad
+        onView(withId(R.id.txtHumedad))
+            .check(matches(withText("50.0%")))
 
         // Verificar que NO hay mensaje de alerta
         onView(withId(R.id.txtMensajeAlerta))
@@ -38,9 +42,9 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("35.0,50.0")
         }
 
-        // Verificar que muestra "35.0°C"
+        // Verificar que muestra "35.0"
         onView(withId(R.id.txtTemperatura))
-            .check(matches(withText("35.0°C")))
+            .check(matches(withText("35.0")))
 
         // Verificar que aparece mensaje de alerta
         onView(withId(R.id.txtMensajeAlerta))
@@ -54,9 +58,9 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("34.0,50.0")
         }
 
-        // Verificar que muestra "34.0°C"
+        // Verificar que muestra "34.0"
         onView(withId(R.id.txtTemperatura))
-            .check(matches(withText("34.0°C")))
+            .check(matches(withText("34.0")))
 
         // NO debe haber mensaje de alerta
         onView(withId(R.id.txtMensajeAlerta))
@@ -94,8 +98,8 @@ class TemperaturaAppTest {
             activity.procesarDatoRecibido("26.2,55.0")
         }
 
-        // Verificar que muestra "26.2°C"
+        // Verificar que muestra "26.2"
         onView(withId(R.id.txtTemperatura))
-            .check(matches(withText("26.2°C")))
+            .check(matches(withText("26.2")))
     }
 }
